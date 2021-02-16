@@ -27,6 +27,6 @@ jobs:
           cd damarowahutu/devops-ci-cd
           git pull
           docker-compose down -t 0
-          docker-compose build --no-cache
+          docker-compose build
           docker-compose up -d
 
