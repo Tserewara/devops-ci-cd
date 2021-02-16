@@ -1,0 +1,43 @@
+version: '3'
+services:
+    database:
+        build:
+            dockerfile: Database/Dockerfile.database
+            context: .
+        image: tserepostgres
+        container_name: damarowahutu-db
+        ports:
+            - "5432:5432"
+        networks:
+            - tserenet
+
+    flask_app:
+        build:
+            dockerfile: Dockerfile.app
+            context: .
+        image: tsereflask
+        container_name: damarowahutu-app
+        ports:
+            - "8000"
+        networks:
+            - tserenet
+        depends_on:
+            - database
+        restart: on-failure
+
+    nginx:
+        image: nginx:1.19.6-alpine
+        container_name: nginx
+        ports:
+            - "80:80"
+        volumes:
+            - ./default.conf:/etc/nginx/conf.d/default.conf
+        networks:
+            - tserenet
+        depends_on:
+            - database
+            - flask_app
+
+networks:
+    tserenet:
+        driver: bridge
