@@ -23,7 +23,7 @@ def about():
 
 
 @app.route('/contact')
-def about():
+def contact():
     return '<h1>Contact page</h1>'
 
 
