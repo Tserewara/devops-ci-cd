@@ -1,6 +1,7 @@
 version: '3'
 services:
     database:
+        restart: always
         build:
             dockerfile: Database/Dockerfile.database
             context: .
@@ -12,6 +13,7 @@ services:
             - tserenet
 
     flask_app:
+        restart: always
         build:
             dockerfile: Dockerfile.app
             context: .
@@ -23,9 +25,9 @@ services:
             - tserenet
         depends_on:
             - database
-        restart: on-failure
 
     nginx:
+        restart: always
         image: nginx:1.19.6-alpine
         container_name: nginx
         ports:
