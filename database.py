@@ -17,11 +17,13 @@ engine = create_engine(get_postgres_uri())
 Base = declarative_base()
 
 
-class Customers(Base):
-    __tablename__ = 'customers'
+class Post(Base):
+    __tablename__ = 'posts'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    title = Column(String)
+    description = Column(String)
+    tag = Column(String)
 
 
 def create_tables():
@@ -33,9 +35,25 @@ def populate_db():
 
     session = sessionmaker(bind=engine)()
 
-    customers = ['Tsere', 'Alvaro', "Cris"]
+    posts = [
+        {
+            "title": "First Post",
+            "description": "A very useful post",
+            "tag": "tip"
+        },
+        {
+            "title": "Second Post",
+            "description": "A very useful post",
+            "tag": "guide"
+        },
+        {
+            "title": "Third Post",
+            "description": "A very useful post",
+            "tag": "tip"
+        },
+    ]
 
-    for customer in customers:
-        session.add(Customers(name=customer))
+    for post in posts:
+        session.add(Post(name=post))
 
     session.commit()

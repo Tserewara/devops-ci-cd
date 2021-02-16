@@ -9,10 +9,15 @@
 </head>
 
 <body>
-    <h1>Aplicativo de Teste</h1>
-    <h2>CI/CD</h2>
-    {% for costumer in costumers %}
-    <h1>Item: {{costumer.name}}</h1>
+    <h1>Posts</h1>
+    <h2>Latest Posts</h2>
+    {% for post in posts %}
+    <div>
+        <h3>{{ post.title }}</h3>
+        <p>{{ post.description }}</p>
+        <span style="background-color: gray; color: white; padding: 8px; border-radius: 4px;">{{ post.tag }}</span>
+
+    </div>
     <hr>
     {% else %}
     <p>Vazio</p>

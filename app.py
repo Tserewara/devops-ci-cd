@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template
 from sqlalchemy.orm import sessionmaker
 
-from database import Customers, engine
+from database import Post, engine
 
 session = sessionmaker(bind=engine)()
 
@@ -11,10 +11,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    app_name = os.environ.get("APP_NAME", "VIRUS")
-    costumers = session.query(Customers).all()
 
-    return render_template('home.html', costumers=costumers, app_name=app_name)
+    posts = session.query(Post).all()
+
+    return render_template('home.html', posts=posts)
+
+
+@app.route('/about')
+def about():
+    return '<h1>About page</h1>'
 
 
 if __name__ == "__main__":
