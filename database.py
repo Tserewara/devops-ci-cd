@@ -54,6 +54,11 @@ def populate_db():
     ]
 
     for post in posts:
-        session.add(Post(name=post))
+        session.add(
+            Post(title=post['title'],
+                 description=post['description'],
+                 tag=post['tag']
+                 )
+        )
 
     session.commit()
