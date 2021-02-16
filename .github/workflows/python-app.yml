@@ -21,4 +21,4 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USER }}
         key: ${{ secrets.DEVOPS_PRIVATE_KEY }}
-        script: echo 'Ok'
+        run: echo 'Ok'
