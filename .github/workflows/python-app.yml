@@ -23,10 +23,10 @@ jobs:
         username: ${{ secrets.USER }}
         key: ${{ secrets.DEVOPS_PRIVATE_KEY }}
         if: github.ref == 'refs/heads/master' && job.status == 'success'
-         script: |
-            cd damarowahutu/devops-ci-cd
-            git pull
-            docker-compose down -t 0
-            docker-compose build --no-cache
-            docker-compose up -d
+        script: |
+          cd damarowahutu/devops-ci-cd
+          git pull
+          docker-compose down -t 0
+          docker-compose build --no-cache
+          docker-compose up -d
 
